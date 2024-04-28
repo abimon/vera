@@ -94,6 +94,9 @@
                         <div class="row d-flex justify-content-between">
                             <div class="card col-md-4 p-4 col-8">
                                 <h3 class="text-success text-center mt-3">Due Appointments</h3>
+                                @foreach($appoints as $k=>$appoint)
+                                 <p class="{{$appoint->confirmed==1?'text-success':'text-danger'}}">{{$k+1}}. {{$appoint->appointmentfor}} at {{$appoint->time}}</p>
+                                @endforeach
                             </div>
                             <div class="card col-md-8 p-4 col-8">
                                 <div class="row">
@@ -101,7 +104,7 @@
                                     <div class="col-8 p-2">
                                         <h4>Available Meal Plans</h4>
                                         @foreach($meals as $i=>$meal)
-                                        {{$i+1}}. <a href="/mealplan/show/{{$meal->id}}">{{$meal->mealtype}} mealplan for {{$meal->disease}} patients</a>
+                                        {{$i+1}}. <a href="{{route('meals.show',$meal->id)}}">{{$meal->mealtype}} mealplan for {{$meal->disease}} patients</a>
                                         @endforeach
                                     </div>
                                 </div>

@@ -2,21 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mealplan;
 use Illuminate\Http\Request;
 
 class MealplanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $items = Mealplan::all();
+        return view('dashboard.mealplan',compact('items'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //

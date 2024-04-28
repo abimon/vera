@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\AppointController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MealplanController;
 use App\Http\Controllers\PrescController;
 use App\Http\Controllers\ReminderController;
 use App\Http\Controllers\UserController;
+use App\Models\Mealplan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +36,7 @@ Route::middleware('auth')->group(function(){
         'appointments'=>AppointController::class,
         'prescriptions'=>PrescController::class,
         'reminder'=>ReminderController::class,
-        'user'=>UserController::class
+        'user'=>UserController::class,
+        'meals'=>MealplanController::class,
     ]);
 });

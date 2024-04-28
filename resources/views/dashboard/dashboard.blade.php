@@ -82,6 +82,7 @@
     <div class="row d-flex justify-content-between">
         <div class="card col-md-4 p-4 col-8">
             <h3 class="text-success text-center mt-3">Due Appointments</h3>
+        
         </div>
         <div class="card col-md-8 p-4 col-8">
             <div class="row">

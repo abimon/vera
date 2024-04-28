@@ -1,4 +1,4 @@
-@extends('layouts.dash')
+@extends('layouts.app')
 @section('content')
 <div class="container mt-5 mb-5" style="min-height: 600px;">
     <div class="row justify-content-center">

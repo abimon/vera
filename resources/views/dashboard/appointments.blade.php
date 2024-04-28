@@ -106,7 +106,7 @@
                         </thead>
                         <tbody>
                             @foreach($items as $key=>$item)
-                            <tr>
+                            <tr class="{{$item->confirmed==0?'bg-secondary':'bg-success'}} text-light">
                                 <td>{{$key+1}}</td>
                                 @if((Auth()->user()->role != 'Patient')&&(Auth()->user()->isApproved == 1))
                                 <td>{{$item->user->name}}</td>
