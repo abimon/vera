@@ -16,6 +16,7 @@
     
     <link href="{{asset('storage/assets2/plugins/bower_components/chartist/dist/chartist.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('storage/assets2/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Custom CSS -->
     <link href="{{asset('storage/assets2/css/style.min.css')}}" rel="stylesheet">
 </head>
@@ -117,6 +118,12 @@
                             </a>
                         </li>
                         @endif
+                        <li class="sidebar-item ">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link text-dark" href="{{route('message.index')}}" aria-expanded="false">
+                                <i class="fa fa-comments" aria-hidden="true"></i>
+                                <span class="hide-menu">Chats</span>
+                            </a>
+                        </li>
                         <li class="sidebar-item ">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link text-danger" href="/logout" aria-expanded="false">
                                 <i class="fa fa-power-off text-danger" aria-hidden="true"></i>

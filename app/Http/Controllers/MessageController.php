@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $messages = Message::where('sender_id',Auth()->user()->id)->orWhere('recepient_id',Auth()->user()->id)->get();
+        $users= User::where('id','!=',Auth()->user()->id)->get();
+        return view('dashboard.chat',compact('messages','users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
@@ -25,9 +24,14 @@ class MessageController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        Message::create([
+            'sender_id'=>Auth()->user()->id,
+            'recepient_id'=>request()->userId,
+            'message'=>request()->message
+        ]);
+        return redirect()->back();
     }
 
     /**

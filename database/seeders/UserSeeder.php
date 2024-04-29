@@ -2,36 +2,27 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-class DatabaseSeeder extends Seeder
+
+class UserSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      */
-    public function run()
+    public function run(): void
     {
-        for($i=1;$i<=50;$i++){
-            User::factory()->create([
-                'name' => $this->randomName(),
-                'email' => $this->em().$i.'@gmail.com',
-                'contact'=> rand(700000000,790000000),
-                'role'=>'Patient',
-                'password' => Hash::make('password'),
-            ]);
-        }
+        User::factorycreate([
+            'name' => $this->randomName(),
+            'email' => $this->randomName().'@gmail.com',
+            'contact'=> rand(700000000,790000000),
+            'role'=>'Patient',
+            'password' => Hash::make('password'),
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-        // $this->call([
-        //     UserSeeder::class,
-        // ]);
+        ]);
     }
     function randomName() {
         $firstname = array(
@@ -145,62 +136,5 @@ class DatabaseSeeder extends Seeder
         $name .= $lastname[rand ( 0 , count($lastname) -1)];
     
         return $name;
-    }
-    function Em(){
-        $firstname = array(
-            'Mischke',
-            'Serna',
-            'Pingree',
-            'Mcnaught',
-            'Pepper',
-            'Schildgen',
-            'Mongold',
-            'Wrona',
-            'Geddes',
-            'Lanz',
-            'Fetzer',
-            'Schroeder',
-            'Block',
-            'Mayoral',
-            'Fleishman',
-            'Roberie',
-            'Latson',
-            'Lupo',
-            'Motsinger',
-            'Drews',
-            'Coby',
-            'Redner',
-            'Culton',
-            'Howe',
-            'Stoval',
-            'Michaud',
-            'Mote',
-            'Menjivar',
-            'Wiers',
-            'Paris',
-            'Grisby',
-            'Noren',
-            'Damron',
-            'Kazmierczak',
-            'Haslett',
-            'Guillemette',
-            'Buresh',
-            'Center',
-            'Kucera',
-            'Catt',
-            'Badon',
-            'Grumbles',
-            'Antes',
-            'Byron',
-            'Volkman',
-            'Klemp',
-            'Pekar',
-            'Pecora',
-            'Schewe',
-            'Ramage',
-        );
-    
-        $em = $firstname[rand ( 0 , count($firstname) -1)];
-        return $em;
     }
 }
