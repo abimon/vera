@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
+use App\Models\Prescription;
 use App\Models\Reminder;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -12,7 +14,9 @@ class ReminderController extends Controller
     public function index()
     {
         $items=Reminder::where([['at','>=',date('H:i')],['from','<=',date('Y-m-d')],['to','>=',date('Y-m-d')]])->get();
-        return view('dashboard.reminders',compact('items'));
+        $prescribes = Prescription::where('patient_id',Auth()->user()->id)->get();
+        $appoints = Appointment::where('user_id',Auth()->user()->id)->get();
+        return view('dashboard.reminders',compact('items','prescribes','appoints'));
     }
 
     public function create()

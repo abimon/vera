@@ -38,15 +38,14 @@
                         </thead>
                         <tbody>
                             @foreach($users->where(('id'), '!=', (Auth()->user()->id)) as $key=>$user)
-                            
                             <tr>
                                 <td>{{$key+1}}</td>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
-                                <td>{{$user->contact}}</td>
+                                <td>0{{$user->contact}}</td>
                                 <td>{{$user->role}}</td>
                                 @if((Auth()->user()->role=='Admin')&&($user->role!='Doctor'))
-                                <td><a href="/user/makeDoctor/{{$user->id}}">Make Doctor</a></td>
+                                <td><a href="{{route('user.create',['userId'=>$user->id])}}">Make Doctor</a></td>
                                 @endif
                             </tr>
                             @endforeach

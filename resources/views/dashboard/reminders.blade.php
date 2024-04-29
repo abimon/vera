@@ -24,9 +24,14 @@
                                 @csrf
                                 <div class="modal-body">
                                     <div class="row mb-2">
-                                        <div class="col-md-6"><label for="">Title</label></div>
-                                        <div class="col-md-6">
-                                            <input type="text" name="title" class="form-control">
+                                        <div class="col-md-4"><label for="">Title</label></div>
+                                        <div class="col-md-8">
+                                            <select name="title" id="" class="form-select">
+                                                <option selected disabled>Select Prescriped Drug</option>
+                                                @foreach($prescribes as $prep)
+                                                <option value="{{$prep->oppointmentfor}}">{{$prep->drug}}</option>
+                                                @endforeach
+                                            </select>
                                             @error('title')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -35,8 +40,8 @@
                                         </div>
                                     </div>
                                     <div class="row mb-2">
-                                        <div class="col-md-6"><label for="">Start Date</label></div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4"><label for="">Start Date</label></div>
+                                        <div class="col-md-8">
                                             <input type="date" name="from" id="" class="form-control">
                                             @error('from')
                                             <span class="invalid-feedback" role="alert">
@@ -46,8 +51,8 @@
                                         </div>
                                     </div>
                                     <div class="row mb-2">
-                                        <div class="col-md-6"><label for="">End Date</label></div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4"><label for="">End Date</label></div>
+                                        <div class="col-md-8">
                                             <input type="date" name="to" id="" class="form-control">
                                             @error('to')
                                             <span class="invalid-feedback" role="alert">
@@ -57,8 +62,8 @@
                                         </div>
                                     </div>
                                     <div class="row mb-2">
-                                        <div class="col-md-6"><label for="">Time</label></div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4"><label for="">Time</label></div>
+                                        <div class="col-md-8">
                                             <input type="time" name="time" id="" class="form-control">
                                             @error('time')
                                             <span class="invalid-feedback" role="alert">
@@ -89,9 +94,14 @@
                                 @csrf
                                 <div class="modal-body">
                                     <div class="row mb-2">
-                                        <div class="col-md-6"><label for="">Title</label></div>
-                                        <div class="col-md-6">
-                                            <input type="text" name="title" class="form-control">
+                                        <div class="col-md-4"><label for="">Title</label></div>
+                                        <div class="col-md-8">
+                                            <select name="title" id="" class="form-select">
+                                                <option selected disabled>Select Appointment</option>
+                                                @foreach($appoints as $appoint)
+                                                <option value="{{$appoint->oppointmentfor}}">{{$appoint->oppointmentfor}}</option>
+                                                @endforeach
+                                            </select>
                                             @error('title')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -100,8 +110,8 @@
                                         </div>
                                     </div>
                                     <div class="row mb-2">
-                                        <div class="col-md-6"><label for="">Date</label></div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4"><label for="">Date</label></div>
+                                        <div class="col-md-8">
                                             <input type="date" name="from" id="" class="form-control">
                                             @error('date')
                                             <span class="invalid-feedback" role="alert">
@@ -111,8 +121,8 @@
                                         </div>
                                     </div>
                                     <div class="row mb-2">
-                                        <div class="col-md-6"><label for="">Time</label></div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4"><label for="">Time</label></div>
+                                        <div class="col-md-8">
                                             <input type="time" name="time" id="" class="form-control">
                                             @error('time')
                                             <span class="invalid-feedback" role="alert">

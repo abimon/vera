@@ -14,7 +14,7 @@ class PrescController extends Controller
     public function index()
     {
         $items = Prescription::all();
-        $users = User::where('role','Patient');
+        $users = User::where('role','Patient')->get();
         return view('dashboard.prescription',compact('items','users'));
     }
 
@@ -29,9 +29,18 @@ class PrescController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        Prescription::create([
+            'patient_id'=>request()->patient_id,
+            'doctor_id'=>Auth()->user()->id,
+            'drug'=>request()->drug,
+            'dosage'=>request()->dosage,
+            'times'=>request()->time,
+            'start_date'=>request()->start_date,
+            'end_date'=>request()->end_date
+        ]);
+        return redirect()->back();
     }
 
     /**

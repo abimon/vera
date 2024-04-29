@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -12,8 +13,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('dashboard.users',compact('users'));
+        if (Auth()->user()->role == 'Admin') {
+            $users = User::where('id', Auth()->user()->id)->get();
+            return view('dashboard.users', compact('users'));
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**
@@ -21,7 +26,12 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        if (Auth()->user()->role == 'Admin') {
+            User::where('id', request()->userId)->update([
+                'role' => 'Doctor'
+            ]);
+        }
+        return redirect()->back();
     }
 
     /**

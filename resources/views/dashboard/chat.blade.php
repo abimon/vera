@@ -63,7 +63,7 @@
                         </div>
                       </div>
                     </div>
-                    <div style="min-height: 75vh;">
+                    <div style="min-height: 70vh;">
                       <!-- Chat Box -->
                       <div class="p-2">
                         <!-- Chat Conversation -->

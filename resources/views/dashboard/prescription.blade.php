@@ -21,11 +21,11 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form method="post" action="/patient/addPrescription">
+                            <form method="post" action="{{route('prescriptions.store')}}">
                                 @csrf
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Full Name</label>
+                                        <label for="exampleInputEmail1">Patient Name</label>
                                         <select class="form-select" name='patient_id' aria-label="patient">
                                             <option selected disabled>Select Patient</option>
                                             @foreach($users as $user)
@@ -34,8 +34,35 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="prep">Prescription</label>
-                                        <input type="text" name='presc' class="form-control" aria-describedby="">
+                                        <label for="prep">Drug Name</label>
+                                        <input type="text" name='drug' placeholder="Eg. Amoxicillin" class="form-control" aria-describedby="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="prep">Dosage</label>
+                                        <input type="text" name='dosage' placeholder="Eg. One tablet, A table spoon" class="form-control" aria-describedby="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="prep">Times</label>
+                                        <select class="form-select" name='time' aria-label="patient">
+                                            <?php $times = [
+                                                [
+                                                    'title'=>'Once a Day',
+                                                    'value'=>1
+                                                ],
+                                                [
+                                                    'title'=>'Twice a Day',
+                                                    'value'=>2
+                                                ], 
+                                                [
+                                                    'title'=>'Thrice a Day',
+                                                    'value'=>3
+                                                ]
+                                            ];?>
+                                            <option selected disabled>Select time</option>
+                                            @foreach($times as $time)
+                                            <option value="{{$time['value']}}">{{$time['title']}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="date">Start Date</label>
@@ -72,6 +99,7 @@
                         <thead>
                             <tr>
                                 <th class="border-top-0">#</th>
+                                <th class="border-top-0">Doctor Name</th>
                                 <th class="border-top-0">Patient Name</th>
                                 <th class="border-top-0">Patient Email</th>
                                 <th class="border-top-0">Patient Contact</th>
@@ -83,10 +111,11 @@
                             @foreach($items as $key=>$item)
                             <tr>
                                 <td>{{$key+1}}</td>
-                                <td>{{$item->name}}</td>
-                                <td>{{$item->email}}</td>
-                                <td>{{$item->contact}}</td>
-                                <td>{{$item->prescription}}</td>
+                                <td>{{$item->doctor->name}}</td>
+                                <td>{{$item->patient->name}}</td>
+                                <td>{{$item->patient->email}}</td>
+                                <td>0{{$item->patient->contact}}</td>
+                                <td>{{$item->drug}} {{$item->dosage}} {{$item->times}} a day</td>
                                 <td>{{$item->end_date}}</td>
                             </tr>
                             @endforeach
