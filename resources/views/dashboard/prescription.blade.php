@@ -116,7 +116,7 @@
                                 <td>{{$item->patient->email}}</td>
                                 <td>0{{$item->patient->contact}}</td>
                                 <td>{{$item->drug}} {{$item->dosage}} {{$item->times}} times a day</td>
-                                <td>{{$item->end_date}}</td>
+                                <td>{{date_format(date_create($item->end_date),'F jS, Y')}}</td>
                             </tr>
                             @endforeach
                         </tbody>
