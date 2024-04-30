@@ -29,7 +29,7 @@
                                             <select name="title" id="" class="form-select">
                                                 <option selected disabled>Select Prescriped Drug</option>
                                                 @foreach($prescribes as $prep)
-                                                <option value="{{$prep->oppointmentfor}}">{{$prep->drug}}</option>
+                                                <option value="{{$prep->drug}}">{{$prep->drug}}</option>
                                                 @endforeach
                                             </select>
                                             @error('title')

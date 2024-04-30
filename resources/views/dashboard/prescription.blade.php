@@ -115,7 +115,7 @@
                                 <td>{{$item->patient->name}}</td>
                                 <td>{{$item->patient->email}}</td>
                                 <td>0{{$item->patient->contact}}</td>
-                                <td>{{$item->drug}} {{$item->dosage}} {{$item->times}} a day</td>
+                                <td>{{$item->drug}} {{$item->dosage}} {{$item->times}} times a day</td>
                                 <td>{{$item->end_date}}</td>
                             </tr>
                             @endforeach

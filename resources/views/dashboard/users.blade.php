@@ -44,13 +44,14 @@
                                 <td>{{$user->email}}</td>
                                 <td>0{{$user->contact}}</td>
                                 <td>{{$user->role}}</td>
-                                @if((Auth()->user()->role=='Admin')&&($user->role!='Doctor'))
+                                @if((Auth()->user()->role=='Admin')&&(($user->role!='Doctor')||(($user->role=='Doctor')&&($user->isApproved!=1))))
                                 <td><a href="{{route('user.create',['userId'=>$user->id])}}">Make Doctor</a></td>
                                 @endif
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="d-flex justify-content-center">{{$users->links()}}</div>
                 </div>
             </div>
         </div>

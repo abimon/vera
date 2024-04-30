@@ -30,9 +30,9 @@
                                         <div class="col-md-8">
                                             <select name="appointmentfor" class="form-select" id="">
                                                 <option selected disabled>Choose Service</option>
-                                                <?php $departments = ['Test', 'Prescription', 'Counselling']; ?>
+                                                <?php $departments = ['Test', 'Prescription', 'Counselling', 'Consultation']; ?>
                                                 @foreach($departments as $dep)
-                                                <option value="{{$dep}}">{{$dep}}</option>
+                                                <option value="Auto-immune Disease {{$dep}}">Auto-immune Disease {{$dep}}</option>
                                                 @endforeach
                                             </select>
                                             @error('appointmentfor')

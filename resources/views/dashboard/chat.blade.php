@@ -24,7 +24,11 @@
                     </div> -->
                     <div class="col-5 mt-3">
                       <h6 class="">{{$user->name}}</h6>
+                      @if($user->isOnline())
                       <small class="text-success">Online</small>
+                      @else
+                      <small class="text-secondary">Offline</small>
+                      @endif
                     </div>
                   </div>
                   <hr>
@@ -48,7 +52,11 @@
                         </div>
                         <div class="col-4">
                           <h6 class="lh-1 mB-0">{{$user->name}}</h6>
-                          <i class="fsz-sm lh-1">Online</i>
+                          @if($user->isOnline())
+                          <i class="text-success">Online</i>
+                          @else
+                          <i class="text-secondary">Offline</i>
+                          @endif
                         </div>
                         <div class="col-3 row">
                           <a href="" class="col-4" title="">
@@ -68,7 +76,7 @@
                       <div class="p-2">
                         <!-- Chat Conversation -->
                         @foreach($messages as $message)
-                        @if(($message->sender_id  == $user->id) ||($message->recepient_id == $user->id))
+                        @if(($message->sender_id == $user->id) ||($message->recepient_id == $user->id))
                         <div class="row">
                           <div class="col-6">
                             @if($message->sender_id != Auth()->user()->id)

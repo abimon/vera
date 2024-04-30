@@ -14,7 +14,7 @@ class UserController extends Controller
     public function index()
     {
         if (Auth()->user()->role == 'Admin') {
-            $users = User::where('id', Auth()->user()->id)->get();
+            $users = User::where('id','!=', Auth()->user()->id)->paginate(10);
             return view('dashboard.users', compact('users'));
         } else {
             return redirect()->back();
@@ -28,7 +28,8 @@ class UserController extends Controller
     {
         if (Auth()->user()->role == 'Admin') {
             User::where('id', request()->userId)->update([
-                'role' => 'Doctor'
+                'role' => 'Doctor',
+                'isApproved'=>true,
             ]);
         }
         return redirect()->back();
