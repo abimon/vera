@@ -21,7 +21,7 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <form method="post" action="/mealplan/create">
+                                        <form method="post" action="{{route('meals.store')}}">
                                             @csrf
                                             <div class="modal-body">
                                                 <div class="row">

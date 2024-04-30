@@ -21,9 +21,21 @@ class MealplanController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $meals=[];
+        $days=[1,2,3,4,5,6,7];
+        foreach($days as $key){
+            array_push($meals,['brf'=>request()->breakfast[$key],'lunch'=>request()->lunch[$key],'supper'=>request()->supper[$key]]);
+        }
+        Mealplan::create([
+            'doc_id'=>Auth()->user()->id,
+            'disease'=>request()->disease,
+            'mealtype'=>request()->mealtype,
+            'plan'=>json_encode($meals),
+            'duration'=>'One Week'
+        ]);
+        return redirect()->back();
     }
 
     /**
