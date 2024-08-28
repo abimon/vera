@@ -41,9 +41,11 @@ class MealplanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $meal= Mealplan::findOrFail($id);
+        $meals = json_decode($meal->plan);
+        return view('dashboard.mealplan', compact('meal','meals'));
     }
 
     /**

@@ -13,9 +13,6 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('storage/assets/img/log.png')}}">
     <!-- Custom CSS -->
-    
-    <link href="{{asset('storage/assets2/plugins/bower_components/chartist/dist/chartist.min.css')}}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('storage/assets2/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Custom CSS -->
     <link href="{{asset('storage/assets2/css/style.min.css')}}" rel="stylesheet">
@@ -144,21 +141,14 @@
            </div>
             <footer class="footer text-between">
                 2022 - {{date('Y')}} © Health Labs
-                <a href="https://apekinc.top/">APEK INC</a>
             </footer>
         </div>
     </div>
     <script src="{{asset('storage/assets2/plugins/bower_components/jquery/dist/jquery.min.js')}}"></script>
-    <script src="{{asset('storage/assets2/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('storage/assets2/js/app-style-switcher.js')}}"></script>
-    <script src="{{asset('storage/assets2/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js')}}"></script>
-    <script src="{{asset('storage/assets2/js/waves.js')}}"></script>
+    <script src="{{asset('storage/assets2/js/min.js')}}"></script>
     <script src="{{asset('storage/assets2/js/sidebarmenu.js')}}"></script>
     <script src="{{asset('storage/assets2/js/custom.js')}}"></script>
-    <script src="{{asset('storage/assets2/plugins/bower_components/chartist/dist/chartist.min.js')}}"></script>
-    <script src="{{asset('storage/assets2/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js')}}"></script>
     <script src="{{asset('storage/assets2/js/pages/dashboards/dashboard1.js')}}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 
 </html>

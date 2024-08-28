@@ -1,0 +1,1 @@
+<p>{{"Hello ".($name).","}}<br>{{"Please remember your ".($rem->title)." Regards, HealthLabsDotCom"}}</p>

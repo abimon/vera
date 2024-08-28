@@ -18,12 +18,21 @@ class Reminder extends Command
 
     public function handle()
     {
-        $rems=Rem::where([['at','=',date('H:i')],['from','<=',date('Y-m-d')],['to','>=',date('Y-m-d')]])->get();
+        
+        $rems=Rem::where([['at','=',date('H:i')],['from','<=',date('Y-m-d')]])->get();
         foreach($rems as $rem){
             $user=User::findOrFail($rem->user_id);
             Log::channel('Reminder')->info(($rem->category)." reminder mail sent successful to ".($user->name)." of mail ".($user->email));
-            $this->sms('0'.($user->contact),json_decode("Hello ".($user->name).", Please remember your ".($rem->title)." Regards, HealthLabsDotCom"));
+            // $this->sms('0'.($user->contact),json_decode("Hello ".($user->name).", Please remember your ".($rem->title)." Regards, HealthLabsDotCom"));
+            Mail::send(
+                'message',
+                ['name'=>$user->name,'rem'=>$rem],
+                function ($message) use ($rem,$user) {
+                    $message->to($user->email, $user->name)->subject($rem->title);
+                }
+            );
         }
+        
         
     }
     function sms($phone,$message)

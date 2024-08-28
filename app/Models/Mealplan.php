@@ -15,4 +15,7 @@ class Mealplan extends Model
         'plan',
         'duration',
     ];
+    public function doc(){
+        return $this->belongsTo(User::class, 'doc_id', 'id');
+    }
 }

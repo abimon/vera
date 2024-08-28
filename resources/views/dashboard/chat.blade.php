@@ -9,31 +9,26 @@
           <div class="row fxw-nw pos-r">
             <!-- Sidebar -->
 
-            <div class="col-3 bg-light" id="">
+            <div class="col-3 bg-light p-2" id="">
               <div class="">
                 <!-- Search -->
                 <div class="bdB layer w-100">
                   <input type="text" placeholder="Search contacts..." name="chatSearch" class="form-control p-2">
                 </div>
                 <!-- List -->
-                <div class="scrollable">
-                  @foreach($users as $k=>$user)
-                  <div class="row m-2 d-flex justify-content-between" id="heading{{$k}}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$k}}" aria-expanded="true" aria-controls="collapse{{$k}}">
-                    <!-- <div class="col-4">
-                      <img class="rounded-circle" style="width: 80px;" src="https://randomuser.me/api/portraits/men/1.jpg" alt="">
-                    </div> -->
-                    <div class="col-5 mt-3">
+                  <div style="max-height:80vh;overflow: scroll;">
+                    @foreach($users as $k=>$user)
+                    <div class="row m-2 d-flex justify-content-between" id="heading{{$k}}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$k}}" aria-expanded="true" aria-controls="collapse{{$k}}">
                       <h6 class="">{{$user->name}}</h6>
-                      @if($user->isOnline())
-                      <small class="text-success">Online</small>
-                      @else
-                      <small class="text-secondary">Offline</small>
-                      @endif
+                        @if($user->isOnline())
+                        <small class="text-success">Online</small>
+                        @else
+                        <small class="text-secondary">Offline</small>
+                        @endif
                     </div>
+                    <!-- <hr> -->
+                    @endforeach
                   </div>
-                  <hr>
-                  @endforeach
-                </div>
               </div>
             </div>
             <!-- Chat Box -->
@@ -104,7 +99,7 @@
                         @csrf
                         <div class="input-group mb-3">
                           <input type="text" name="message" class="form-control" placeholder="Say something ...">
-                          <button class="input-group-text btn-info" type="submit"><i class="bi bi-send"></i></span>
+                          <button class="input-group-text btn-info" type="submit"><i class="fa fa-paper-plane"></i></span>
                         </div>
                       </form>
                     </div>

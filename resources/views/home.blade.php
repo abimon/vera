@@ -11,13 +11,13 @@
                     <div class="page-breadcrumb bg-white">
                         <div class="d-md-flex justify-content-end">
                             @if((Auth()->user()->role=='Admin')||(Auth()->user()->role=='Doctor'))
-                            <button type="button" data-toggle="modal" data-target="#mealplan" class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white"><i class="fa fa-plus"></i> Mealplan</button>
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#mealplan" class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white"><i class="fa fa-plus"></i> Mealplan</button>
                             <div class="modal fade" id="mealplan" tabindex="-1" role="dialog" aria-labelledby="mealplan" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="patientModal">Create Meal plan</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>

@@ -10,13 +10,13 @@
                 <ol class="breadcrumb ms-auto">
                     <li><a href="#" class="fw-normal"></a></li>
                 </ol>
-                <button class="btn btn-danger  ms-3 waves-effect waves-light text-white" type="button" data-toggle="modal" data-target="#appointment"><i class="fa fa-plus"></i> Appointment</button>
+                <button class="btn btn-danger  ms-3 waves-effect waves-light text-white" type="button" data-bs-toggle="modal" data-bs-target="#appointment"><i class="fa fa-plus"></i> Appointment</button>
                 <div class="modal fade" id="appointment" tabindex="-1" role="dialog" aria-labelledby="appointment" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="appointmentModal">Create Appointment</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>

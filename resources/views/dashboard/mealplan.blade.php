@@ -5,8 +5,8 @@
         <div class="col-md-10">
                 <div class="mt-5">
                     <div class="text-uppercase text-center text-success">
-                        <h1>{{$mealtype}} meal-plan for {{$disease}}</h1>
-                        <small class="text-capitalize text-info text-end"><i>By Dr. {{$doc}}</i></small>
+                        <h1>{{$meal->mealtype}} meal-plan for {{$meal->disease}}</h1>
+                        <small class="text-capitalize text-info text-end"><i>By Dr. {{$meal->doc->name}}</i></small>
                     </div>
                 </div>
                 <table class="table table-responsive table-striped">
@@ -22,9 +22,9 @@
                         @foreach($meals as $key=>$meal) 
                         <tr>
                             <td class="text-center">Day {{$key+1}}</td>
-                            <td class="text-center">{{$meal['brf']}}</td>
-                            <td class="text-center">{{$meal['lunch']}}</td>
-                            <td class="text-center">{{$meal['supper']}}</td>
+                            <td class="text-center">{{$meal->brf}}</td>
+                            <td class="text-center">{{$meal->lunch}}</td>
+                            <td class="text-center">{{$meal->supper}}</td>
                         </tr>
                         @endforeach
                     </tbody>

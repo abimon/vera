@@ -10,13 +10,13 @@
                 <ol class="breadcrumb ms-auto">
                     <li><a href="#" class="fw-normal"></a></li>
                 </ol>
-                <button class="btn btn-danger  ms-3 waves-effect waves-light text-white" type="button" data-toggle="modal" data-target="#drug"><i class="fa fa-bell"></i> Set Drug Reminder</button>
+                <button class="btn btn-danger  ms-3 waves-effect waves-light text-white" type="button" data-bs-toggle="modal" data-bs-target="#drug"><i class="fa fa-bell"></i> Set Drug Reminder</button>
                 <div class="modal fade" id="drug" tabindex="-1" role="dialog" aria-labelledby="drug" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="drugModal">Create Drug Reminder</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -80,13 +80,13 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-info ms-3 waves-effect waves-light text-white" type="button" data-toggle="modal" data-target="#appoint"><i class="fa fa-clock"></i> Set Appointment Reminder</button>
+                <button class="btn btn-info ms-3 waves-effect waves-light text-white" type="button" data-bs-toggle="modal" data-bs-target="#appoint"><i class="fa fa-clock"></i> Set Appointment Reminder</button>
                 <div class="modal fade" id="appoint" tabindex="-1" role="dialog" aria-labelledby="appoint" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="patientModal">Create Appointment Reminder</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -99,7 +99,7 @@
                                             <select name="title" id="" class="form-select">
                                                 <option selected disabled>Select Appointment</option>
                                                 @foreach($appoints as $appoint)
-                                                <option value="{{$appoint->oppointmentfor}}">{{$appoint->oppointmentfor}}</option>
+                                                <option value="{{$appoint->appointmentfor}}">{{$appoint->appointmentfor}}</option>
                                                 @endforeach
                                             </select>
                                             @error('title')
@@ -112,7 +112,7 @@
                                     <div class="row mb-2">
                                         <div class="col-md-4"><label for="">Date</label></div>
                                         <div class="col-md-8">
-                                            <input type="date" name="from" id="" class="form-control">
+                                            <input type="date" name="from" id=""  class="form-control">
                                             @error('date')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -123,13 +123,14 @@
                                     <div class="row mb-2">
                                         <div class="col-md-4"><label for="">Time</label></div>
                                         <div class="col-md-8">
-                                            <input type="time" name="time" id="" class="form-control">
+                                            <input type="time" name="time" id="" placeholder="{{date('H:i:s')}}" class="form-control">
                                             @error('time')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                             @enderror
                                         </div>
+                                        
                                     </div>
                                 </div>
                                 <div class="modal-footer">

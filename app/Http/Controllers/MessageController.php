@@ -12,12 +12,8 @@ class MessageController extends Controller
     public function index()
     {
         $messages = Message::where('sender_id',Auth()->user()->id)->orWhere('recepient_id',Auth()->user()->id)->get();
-        if(Auth()->user()->role == 'Patient'){
-            $users= User::where([['id','!=',Auth()->user()->id],['role','Doctor']])->get();
-        }
-        else{
-            $users=User::where('id','!=',Auth()->user()->id)->get();
-        }
+        $users= User::where([['id','!=',Auth()->user()->id],['role','Doctor']])->orderBy('name','desc')->get();
+
         return view('dashboard.chat',compact('messages','users'));
     }
 

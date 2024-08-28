@@ -13,7 +13,7 @@ class ReminderController extends Controller
     
     public function index()
     {
-        $items=Reminder::where([['at','>=',date('H:i')],['from','<=',date('Y-m-d')],['to','>=',date('Y-m-d')]])->get();
+        $items=Reminder::where([['at','>=',date('H:i')],['from','<=',date('Y-m-d')]])->get();
         $prescribes = Prescription::where('patient_id',Auth()->user()->id)->get();
         $appoints = Appointment::where('user_id',Auth()->user()->id)->get();
         return view('dashboard.reminders',compact('items','prescribes','appoints'));
@@ -26,6 +26,7 @@ class ReminderController extends Controller
 
     public function store(Request $request)
     {
+        // dd(request());
         Reminder::create([
             'user_id'=>Auth()->user()->id,
             'title'=>request()->title,

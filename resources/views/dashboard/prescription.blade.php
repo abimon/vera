@@ -11,13 +11,13 @@
                     <li><a href="#" class="fw-normal"></a></li>
                 </ol>
                 @if((Auth()->user()->role=='Admin')||(Auth()->user()->role=='Doctor'))
-                <button type="button" data-toggle="modal" data-target="#prescribe" class="btn btn-info  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Prescribe</button>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#prescribe" class="btn btn-info  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Prescribe</button>
                 <div class="modal fade" id="prescribe" tabindex="-1" role="dialog" aria-labelledby="prepModal" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="patientModal"><i class="fa fa-add"></i> Prescription</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -74,7 +74,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary">Save User</button>
                                 </div>
                             </form>
