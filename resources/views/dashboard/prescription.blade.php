@@ -10,7 +10,7 @@
                 <ol class="breadcrumb ms-auto">
                     <li><a href="#" class="fw-normal"></a></li>
                 </ol>
-                @if((Auth()->user()->role=='Admin')||(Auth()->user()->role=='Doctor'))
+                @if((Auth()->user()->role=='Doctor'))
                 <button type="button" data-bs-toggle="modal" data-bs-target="#prescribe" class="btn btn-info  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Prescribe</button>
                 <div class="modal fade" id="prescribe" tabindex="-1" role="dialog" aria-labelledby="prepModal" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -75,7 +75,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Save User</button>
+                                    <button type="submit" class="btn btn-success">Prescribe</button>
                                 </div>
                             </form>
                         </div>

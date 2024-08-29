@@ -33,7 +33,7 @@ class ReminderController extends Controller
             'category'=>request()->category,
             'at'=>request()->time,
             'from'=>request()->from,
-            'to'=>request()->to,
+            'to'=>request()->from,
         ]);
         return redirect()->back()->with('success','Reminders set successiful');
     }

@@ -7,6 +7,7 @@
         </div>
         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <div class="d-md-flex">
+                @if(Auth()->user()->role=='Patient')
                 <ol class="breadcrumb ms-auto">
                     <li><a href="#" class="fw-normal"></a></li>
                 </ol>
@@ -77,6 +78,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </div>
@@ -102,6 +104,8 @@
                                 <th class="border-top-0">Service</th>
                                 <th class="border-top-0">Preferred Time</th>
                                 <th class="border-top-0">Preferred Date</th>
+                                <th class="border-top-0">Approval</th>
+                                <th class="border-top-0">Edit</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -116,6 +120,91 @@
                                 <td>{{$item->appointmentfor}}</td>
                                 <td>{{$item->time}}</td>
                                 <td>{{$item->date}}</td>
+                                @if((Auth()->user()->role == 'Admin')||(Auth()->user()->role == 'Doctor'))
+                                <th>
+                                    <form action="/approve/{{$item->id}}" method="post">
+                                        @csrf
+                                        @method('PUT')
+                                        @if($item->confirmed == '0')
+                                        <button type="submit" class="btn btn-success">Approve</button>
+                                        @else
+                                        <button type="submit" class="btn btn-danger">Cancel</button>
+                                        @endif
+                                    </form>
+                                </th>
+                                <th>
+                                <button type="submit" class="btn btn-outline-dark" type="button" data-bs-toggle="modal" data-bs-target="#appointment{{$item->id}}">Edit</button>
+                                </th>
+                                <div class="modal fade" id="appointment{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="appointment" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="appointment{{$item->id}}">Update Appointment</h5>
+                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form method="post" action="{{route('appointments.update',$item->id)}}">
+                                                @csrf
+                                                @method('PUT')
+                                                <div class="modal-body">
+                                                    <div class="row mb-2">
+                                                        <div class="col-md-4">
+                                                            <label for="">Service</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <select name="appointmentfor" class="form-select" id="">
+                                                                <option selected disabled>Choose Service</option>
+                                                                <?php $departments = ['Auto-immune Disease Test', 'Auto-immune Disease Prescription', 'Auto-immune Disease Counselling', 'Auto-immune Disease Consultation']; ?>
+                                                                @foreach($departments as $dep)
+                                                                <option value="{{$dep}}" {{$dep ==($item->appointmentfor)?'selected':''}}>{{$dep}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('appointmentfor')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-2">
+                                                        <div class="col-md-4">
+                                                            <label for="">Date</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <input type="date" name="date" value='{{$item->date}}' id="" class="form-control">
+                                                            @error('from')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-2">
+                                                        <div class="col-md-4">
+                                                            <label class="control-label" for="time">Preferred Time</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <select id="time" name="time" class="form-select">
+                                                                <?php $times = ['8:00am to 9:00am', '9:00am to 10:00am', '10:00am to 11:00am', '11:00am to 12:00pm', '2:00pm to 3:00pm', '3:00pm to 4:00pm']; ?>
+                                                                <option selected disabled>Select Suitable Time</option>
+                                                                @foreach($times as $time)
+                                                                <option value="{{$time}}" {{$time == $item->time?'selected':''}}>{{$time}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-success">Update</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                @else
+                                <th></th>
+                                @endif
                             </tr>
                             @endforeach
                         </tbody>

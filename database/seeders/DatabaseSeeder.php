@@ -14,12 +14,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        for($i=1;$i<=50;$i++){
+        for($i=1;$i<=20;$i++){
             User::factory()->create([
                 'name' => $this->randomName(),
                 'email' => $this->em().$i.'@gmail.com',
                 'contact'=> rand(700000000,790000000),
-                'role'=>'Patient',
+                'role'=>'Doctor',
                 'password' => Hash::make('password'),
             ]);
         }

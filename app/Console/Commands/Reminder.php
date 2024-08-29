@@ -18,33 +18,32 @@ class Reminder extends Command
 
     public function handle()
     {
-        
-        $rems=Rem::where([['at','=',date('H:i')],['from','<=',date('Y-m-d')]])->get();
-        foreach($rems as $rem){
-            $user=User::findOrFail($rem->user_id);
-            Log::channel('Reminder')->info(($rem->category)." reminder mail sent successful to ".($user->name)." of mail ".($user->email));
-            // $this->sms('0'.($user->contact),json_decode("Hello ".($user->name).", Please remember your ".($rem->title)." Regards, HealthLabsDotCom"));
+        $rems = Rem::where([['at', '=', date('H:i')], ['from', '<=', date('Y-m-d')]])->get();
+        foreach ($rems as $rem) {
+            $user = User::findOrFail($rem->user_id);
+            Log::channel('Reminder')->info(($rem->category) . " reminder mail sent successful to " . ($user->name) . " of mail " . ($user->email));
+            $this->phonesms(($user->contact),"Hello ".($user->name).", Please remember your ".($rem->title)." Regards, HealthLabsDotCom");
             Mail::send(
                 'message',
-                ['name'=>$user->name,'rem'=>$rem],
-                function ($message) use ($rem,$user) {
+                ['name' => $user->name, 'rem' => $rem],
+                function ($message) use ($rem, $user) {
                     $message->to($user->email, $user->name)->subject($rem->title);
                 }
             );
         }
-        
-        
     }
-    function sms($phone,$message)
-    {
-        
-        $data = json_encode(array(
-            "api_key" => env('UMS_API_KEY'),
-            "email" => env('UMS_EMAIL'),
-            "Sender_Id" => env('UMS_SENDER_ID'),
+    
+    function phonesms($phone, $message){
+        $API_KEY = "3d5bb20a395bb6d2d08452ac4b2146e1";
+        $API_TOKEN = "cb0873ee-3bf4-46c8-94c5-74279f9a794f";
+        $data = json_encode([
+            "apikey" => $API_KEY,
+            "partnerID"=>"8510",
             "message" => $message,
-            "phone" => $phone,
-        ));
-        Http::withBody($data,'application/json')->withHeaders(['Content-Type : application/json'])->post('https://api.umeskiasoftwares.com/api/v1/sms');
+            "shortcode" => "TextSMS",
+            "mobile" => $phone
+        ]);
+        Http::withBody($data, 'application/json')->withHeaders(['Access-Token'=>$API_TOKEN])->post('https://sms.textsms.co.ke/api/services/sendsms/');
+        
     }
 }

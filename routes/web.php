@@ -40,4 +40,5 @@ Route::middleware('auth')->group(function(){
         'meals'=>MealplanController::class,
         'message'=>MessageController::class,
     ]);
+    Route::put('/approve/{id}',[AppointController::class,'approve']);
 });

@@ -12,7 +12,12 @@ class AppointController extends Controller
      */
     public function index()
     {
-        $items=Appointment::where([['date','>=',date('Y-m-d')]])->get();
+        if((Auth()->user()->role=='Admin')||(Auth()->user()->role=='Doctor')){
+            $items=Appointment::where([['date','>=',date('Y-m-d')]])->get();
+        }
+        else{
+            $items=Appointment::where([['date','>=',date('Y-m-d')],['user_id',Auth()->user()->id]])->get();
+        }
         return view('dashboard.appointments',compact('items'));
     }
 
@@ -58,9 +63,29 @@ class AppointController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update($id)
     {
-        //
+        // dd(request());
+        $app=Appointment::findOrFail($id);
+        
+        if(request('date')!=null){
+            $app->date=request('date');
+        }
+        if(request('time')!=null){
+            $app->time=request('time');
+        }
+        if(request('confirmed')!=null){
+          $app->confirm = !($app->confirm);
+        }
+        $app->update();
+        return redirect()->back()->with('message','Appointment updated successfully.');
+    }
+    public function approve($id){
+        $app=Appointment::findOrFail($id);
+        $app->confirmed = !($app->confirmed);
+        $app->update();
+        return redirect()->back()->with('message','Appointment updated successfully.');
+    
     }
 
     /**

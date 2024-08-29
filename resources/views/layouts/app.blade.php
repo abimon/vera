@@ -101,12 +101,14 @@
                                 <span class="hide-menu">Messages</span>
                             </a>
                         </li> -->
+                        @if(Auth()->user()->role=='Patient')
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('reminder.index')}}" aria-expanded="false">
                                 <i class="fa fa-bell" aria-hidden="true"></i>
                                 <span class="hide-menu">Reminders</span>
                             </a>
                         </li>
+                        @endif
                         @if((Auth()->user()->role=='Admin')&&(Auth()->user()->isApproved==1))
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('user.index')}}" aria-expanded="false">
